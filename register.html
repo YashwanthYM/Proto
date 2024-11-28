@@ -10,11 +10,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Nova+Square&family=Share+Tech&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="stylesheet" href="style.css">
-  <script src="scripts.js" defer></script>
-
 </head>
 <style>
-  /* Styling for background and input fields (same as in your provided code) */
   @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
 
   * {
@@ -22,10 +19,12 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "Exo 2", sans-serif;
+
   }
 
   #myVideo {
     position: fixed;
+    /* display: block; */
     margin: 10px;
     right: 0;
     bottom: 0;
@@ -33,6 +32,9 @@
     height: 100%;
     object-fit: cover;
     z-index: -1;
+    /* filter: blurpx); */
+    /* Ensure the video is behind other content */
+
   }
 
   body {
@@ -41,6 +43,7 @@
     align-items: center;
     min-height: 100vh;
     background: #131b23;
+
   }
 
   .container {
@@ -48,10 +51,13 @@
     border-radius: 20px;
     border: 8px solid #223243;
     backdrop-filter: blur(6px);
+    /* Adjust the blur amount as needed */
     box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.1),
       5px 5px 15px rgba(0, 0, 0, 0.35),
       inset -5px -5px 15px rgba(255, 255, 255, 0.1),
       inset 5px 5px 15px rgba(0, 0, 0, 0.35);
+
+
   }
 
   .container h2 {
@@ -61,6 +67,7 @@
     text-align: center;
     margin-bottom: 20px;
     font-size: 35px;
+    /* Add text-align: center to center-align the text */
   }
 
   .container .form {
@@ -80,10 +87,18 @@
     display: flex;
   }
 
+  .container .form h2 {
+    color: #fff;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+  }
+
   .container .form .inputBox {
     position: relative;
     width: 300px;
     margin: 20px;
+    /* Add margin-bottom to create spacing between input boxes */
+
   }
 
   .container .form .inputBox input {
@@ -146,12 +161,14 @@
     background: #00dfc4;
     color: #223243;
     padding: 10px 30px;
+    /* Increased padding for better appearance */
     font-weight: 500;
     cursor: pointer;
     box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.1),
       5px 5px 15px rgba(0, 0, 0, 0.35),
       inset -5px -5px 15px rgba(255, 255, 255, 0.1),
       inset 5px 5px 15px rgba(0, 0, 0, 0.35);
+
   }
 
   .container .form p {
@@ -187,45 +204,46 @@
       <div class="flex-container">
         <div>
           <div class="inputBox">
-            <input type="text" name="name" required="required">
+            <input type="text" required="required">
             <i class="fa-regular fa-user"></i>
             <span>Name</span>
           </div>
           <div class="inputBox">
-            <input type="email" name="email" required="required">
+            <input type="text" required="required">
             <i class="fa-regular fa-envelope"></i>
             <span>Email</span>
           </div>
           <div class="inputBox">
-            <input type="password" name="password" required="required">
+            <input type="password" required="required">
             <i class="fa-solid fa-lock"></i>
             <span>Create password</span>
           </div>
           <div class="inputBox">
-            <input type="password" name="confirmPassword" required="required">
+            <input type="password" required="required">
             <i class="fa-solid fa-lock"></i>
             <span>Confirm password</span>
           </div>
         </div>
         <div>
           <div class="inputBox">
-            <input type="date" name="dob" required="required">
-            <i class="fa-solid fa-calendar"></i>
-            <span>Date of Birth</span>
+            <input type="date" required="required">
+            <i class="fa
+                        -solid fa-lock"></i>
+            <span></span>
           </div>
           <div class="inputBox">
-            <input type="tel" name="phone" required="required">
-            <i class="fa-solid fa-phone"></i>
+            <input type="tel" required="required">
+            <i class="fa-solid fa-lock"></i>
             <span>Mobile Number</span>
           </div>
           <div class="inputBox">
-            <input type="text" name="education" required="required">
-            <i class="fa-solid fa-graduation-cap"></i>
+            <input type="text" required="required">
+            <i class="fa-solid fa-lock"></i>
             <span>Education</span>
           </div>
           <div class="inputBox">
-            <input type="text" name="college" required="required">
-            <i class="fa-solid fa-school"></i>
+            <input type="text" required="required">
+            <i class="fa-solid fa-lock"></i>
             <span>College Name</span>
           </div>
         </div>
@@ -233,9 +251,42 @@
       <div class="inputBox">
         <input type="submit" value="Create Account">
       </div>
-      <p>Already a member? <a href="login.html" class="login">Log in</a></p>
+      <p>Already a member ? <a href="login.html" class="login">Log in</a></p>
+      <p>Want to create an account? <a href="#" class="create">Create Account</a></p>
+
     </div>
+
+
+
   </div>
 
   <script>
-    document.querySelector('.signup').onsubmit
+document.addEventListener('DOMContentLoaded', () => {
+  const login = document.querySelector('.login');
+  const create = document.querySelector('.create');
+  const container = document.querySelector('.container');
+
+  if (login) {
+    login.addEventListener('click', () => container.classList.add('signinForm'));
+  }
+
+  if (create) {
+    create.addEventListener('click', () => container.classList.remove('signinForm'));
+  }
+
+  const form = document.querySelector('.signup');
+  form.addEventListener('submit', (event) => {
+    const password = form.querySelector('input[type="password"]:nth-of-type(1)').value;
+    const confirmPassword = form.querySelector('input[type="password"]:nth-of-type(2)').value;
+
+    if (password !== confirmPassword) {
+      event.preventDefault();
+      alert('Passwords do not match!');
+    }
+  });
+});
+
+  </script>
+</body>
+
+</html>
