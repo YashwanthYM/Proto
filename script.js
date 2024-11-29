@@ -1,13 +1,15 @@
 <body>
   <!-- Your HTML content here -->
-  <script>
-  // Add this function in your scripts.js file
-function showInstructions() {
-  var instructionBox = document.getElementById("instructionBox");
-  instructionBox.classList.toggle("active");
-}
 
+  <script>
+    // Combined showInstructions function for both toggling and redirecting
     function showInstructions(language) {
+      var instructionBox = document.getElementById("instructionBox");
+      if (instructionBox) {
+        instructionBox.classList.toggle("active");
+      }
+      
+      // Redirect logic based on language selection
       if (language === 'ENGLISH') {
         window.location.href = "test_english.html"; // Redirect to English test page
       } else if (language === 'मराठी') {
@@ -28,6 +30,8 @@ function showInstructions() {
     document.addEventListener('DOMContentLoaded', () => {
       const navbar = document.querySelector('.navbar');
       const searchBox = document.querySelector('.search-box .bx-search');
+
+      // Toggle search box open/close
       if (searchBox && navbar) {
         searchBox.addEventListener('click', () => {
           navbar.classList.toggle('showInput');
@@ -40,11 +44,13 @@ function showInstructions() {
       const menuOpenBtn = document.querySelector('.navbar .bx-menu');
       const menuCloseBtn = document.querySelector('.nav-links .bx-x');
 
+      // Sidebar open/close
       if (menuOpenBtn && navLinks) {
         menuOpenBtn.addEventListener('click', () => navLinks.classList.add('open'));
         menuCloseBtn?.addEventListener('click', () => navLinks.classList.remove('open'));
       }
 
+      // Toggle submenus
       const toggleSubmenu = (arrowSelector, showClass) => {
         const arrow = document.querySelector(arrowSelector);
         if (arrow) {
@@ -58,4 +64,3 @@ function showInstructions() {
     });
   </script>
 </body>
-
