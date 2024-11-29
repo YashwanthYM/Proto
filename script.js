@@ -1,6 +1,12 @@
 <body>
   <!-- Your HTML content here -->
   <script>
+  // Add this function in your scripts.js file
+function showInstructions() {
+  var instructionBox = document.getElementById("instructionBox");
+  instructionBox.classList.toggle("active");
+}
+
     function showInstructions(language) {
       if (language === 'ENGLISH') {
         window.location.href = "test_english.html"; // Redirect to English test page
