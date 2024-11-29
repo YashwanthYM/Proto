@@ -1,39 +1,53 @@
-// search-box open close js code
-let navbar = document.querySelector(".navbar");
-let searchBox = document.querySelector(".search-box .bx-search");
-// let searchBoxCancel = document.querySelector(".search-box .bx-x");
+function showInstructions(language) {
+    if (language === 'ENGLISH') {
+        window.location.href = "test_english.html"; // Redirect to English test page
+    } else if (language === 'मराठी') {
+        window.location.href = "test_marathi.html"; // Redirect to Marathi test page
+    } else if (language === 'हिन्दी') {
+        window.location.href = "test_hindi.html"; // Redirect to Hindi test page
+    }
+}
 
-searchBox.addEventListener("click", ()=>{
-  navbar.classList.toggle("showInput");
-  if(navbar.classList.contains("showInput")){
-    searchBox.classList.replace("bx-search" ,"bx-x");
-  }else {
-    searchBox.classList.replace("bx-x" ,"bx-search");
+function login() {
+    window.location.href = "login.html";  // Navigate to login page
+}
+
+function register() {
+    window.location.href = "register.html";  // Navigate to register page
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const navbar = document.querySelector('.navbar');
+  const searchBox = document.querySelector('.search-box .bx-search');
+
+  if (searchBox && navbar) {
+    searchBox.addEventListener('click', () => {
+      navbar.classList.toggle('showInput');
+      searchBox.classList.toggle('bx-x');
+      searchBox.classList.toggle('bx-search');
+    });
   }
+
+  // Sidebar toggle
+  const navLinks = document.querySelector('.nav-links');
+  const menuOpenBtn = document.querySelector('.navbar .bx-menu');
+  const menuCloseBtn = document.querySelector('.nav-links .bx-x');
+
+  if (menuOpenBtn && navLinks) {
+    menuOpenBtn.addEventListener('click', () => navLinks.classList.add('open'));
+    menuCloseBtn?.addEventListener('click', () => navLinks.classList.remove('open'));
+  }
+
+  // Submenu toggles
+  const toggleSubmenu = (arrowSelector, showClass) => {
+    const arrow = document.querySelector(arrowSelector);
+    if (arrow) {
+      arrow.addEventListener('click', () => navLinks?.classList.toggle(showClass));
+    }
+  };
+
+  toggleSubmenu('.htmlcss-arrow', 'show1');
+  toggleSubmenu('.more-arrow', 'show2');
+  toggleSubmenu('.js-arrow', 'show3');
 });
 
-// sidebar open close js code
-let navLinks = document.querySelector(".nav-links");
-let menuOpenBtn = document.querySelector(".navbar .bx-menu");
-let menuCloseBtn = document.querySelector(".nav-links .bx-x");
-menuOpenBtn.onclick = function() {
-navLinks.style.left = "0";
-}
-menuCloseBtn.onclick = function() {
-navLinks.style.left = "-100%";
-}
-
-
-// sidebar submenu open close js code
-let htmlcssArrow = document.querySelector(".htmlcss-arrow");
-htmlcssArrow.onclick = function() {
- navLinks.classList.toggle("show1");
-}
-let moreArrow = document.querySelector(".more-arrow");
-moreArrow.onclick = function() {
- navLinks.classList.toggle("show2");
-}
-let jsArrow = document.querySelector(".js-arrow");
-jsArrow.onclick = function() {
- navLinks.classList.toggle("show3");
-}
